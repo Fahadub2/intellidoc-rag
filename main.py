@@ -59,81 +59,110 @@ st.set_page_config(
 
 CUSTOM_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 /* الأساسي */
 * {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .stApp {
-    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
-    color: #ffffff;
+    background-color: #0a0c10;
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* تأثيرات الزجاج */
+.glass-panel {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
 }
 
 /* الهيدر */
 .main-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 20px;
-    padding: 2rem;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .main-header h1 {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 600;
     margin: 0;
-    color: white;
+    color: #f1f5f9;
+    letter-spacing: -0.02em;
 }
 
 .main-header p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.5rem;
+    color: #94a3b8;
+    margin-top: 0.75rem;
+    font-weight: 300;
 }
 
 /* بطاقة الميزات */
 .feature-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 1.75rem;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-box:hover {
-    transform: translateY(-5px);
-    border-color: #667eea;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.1);
 }
 
 .feature-icon {
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .feature-title {
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.25rem;
+    font-weight: 500;
+    color: #f1f5f9;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 .feature-desc {
     font-size: 0.85rem;
-    color: #888;
+    color: #64748b;
+    font-weight: 300;
 }
 
 /* المحادثة */
 .chat-container {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
     padding: 1.5rem;
     min-height: 50vh;
     max-height: 60vh;
     overflow-y: auto;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* الرسائل */
@@ -152,16 +181,17 @@ CUSTOM_CSS = """
 .message-avatar {
     width: 45px;
     height: 45px;
-    border-radius: 15px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
     flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .avatar-user {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
 }
 
 .avatar-ai {
@@ -169,34 +199,36 @@ CUSTOM_CSS = """
 }
 
 .message-bubble {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    border-top-left-radius: 4px;
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 20px;
+    border-top-left-radius: 6px;
     padding: 1rem 1.25rem;
     max-width: 80%;
     line-height: 1.7;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .message.user .message-bubble {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 18px;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 18px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 20px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 20px;
     margin-left: auto;
+    border: none;
 }
 
 .message-sources {
-    background: rgba(102, 126, 234, 0.1);
-    border-left: 3px solid #667eea;
-    border-radius: 0 12px 12px 0;
+    background: rgba(56, 189, 248, 0.08);
+    border-left: 3px solid #38bdf8;
+    border-radius: 0 16px 16px 0;
     padding: 0.75rem 1rem;
     margin-top: 0.75rem;
     font-size: 0.85rem;
 }
 
 .sources-title {
-    color: #667eea;
-    font-weight: 600;
+    color: #38bdf8;
+    font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
@@ -210,7 +242,7 @@ CUSTOM_CSS = """
 .typing-dot {
     width: 8px;
     height: 8px;
-    background: #667eea;
+    background: #38bdf8;
     border-radius: 50%;
     animation: bounce 1.4s infinite ease-in-out;
 }
@@ -226,43 +258,54 @@ CUSTOM_CSS = """
 
 /* المقاييس */
 .metric-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 1.75rem;
     text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
 }
 
 .metric-value {
-    font-size: 2rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-size: 2.25rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
 }
 
 .metric-label {
-    color: #888;
-    font-size: 0.9rem;
+    color: #64748b;
+    font-size: 0.85rem;
     margin-top: 0.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 /* المستندات */
 .doc-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     padding: 1rem;
     margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .doc-item:hover {
-    border-color: #667eea;
-    transform: translateX(5px);
+    border-color: rgba(56, 189, 248, 0.3);
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .doc-info {
@@ -274,84 +317,176 @@ CUSTOM_CSS = """
 .doc-icon {
     width: 45px;
     height: 45px;
-    background: rgba(102, 126, 234, 0.2);
-    border-radius: 12px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
+    border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 /* الشريط الجانبي */
 .css-1d391kg {
-    background: #12121a !important;
+    background: #0d1117 !important;
+}
+
+section[data-testid="stSidebar"] {
+    background: #0d1117 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* الأزرار */
 .stButton > button {
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
     color: white !important;
     border: none !important;
-    border-radius: 12px !important;
+    border-radius: 14px !important;
     padding: 0.75rem 1.5rem !important;
-    font-weight: 600 !important;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
-    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    letter-spacing: 0.01em;
 }
 
 .stButton > button:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35) !important;
 }
 
 /* حقول الإدخال */
 .stTextInput > div > div > input {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 12px !important;
-    color: white !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 14px !important;
+    color: #e2e8f0 !important;
     padding: 0.75rem 1rem !important;
+    transition: all 0.2s ease !important;
 }
 
 .stTextInput > div > div > input:focus {
-    border-color: #667eea !important;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15) !important;
+}
+
+.stTextInput > div > div > input::placeholder {
+    color: #475569 !important;
 }
 
 /* شريط التقدم */
 .stProgress > div > div > div {
-    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+    border-radius: 10px !important;
 }
 
 /* علامات التبويب */
 .stTabs [data-baseweb="tab-list"] {
     gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 0.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .stTabs [data-baseweb="tab"] {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 10px !important;
-    padding: 0.5rem 1rem !important;
-    color: #888 !important;
+    background: transparent !important;
+    border-radius: 12px !important;
+    padding: 0.75rem 1.25rem !important;
+    color: #64748b !important;
+    font-weight: 400 !important;
+    transition: all 0.2s ease !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: #94a3b8 !important;
+    background: rgba(255, 255, 255, 0.03) !important;
 }
 
 .stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
     color: white !important;
+    font-weight: 500 !important;
 }
 
 /* شريط التمرير */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #0a0c10;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #667eea;
-    border-radius: 4px;
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* تخصيصات إضافية */
+div[data-testid="stFileUploader"] {
+    background: rgba(15, 23, 42, 0.4);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+div[data-testid="stFileUploader"]:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    background: rgba(15, 23, 42, 0.6);
+}
+
+div[data-testid="stFileUploader"] label {
+    color: #94a3b8 !important;
+}
+
+/* Expander في الشريط الجانبي */
+.streamlit-expanderHeader {
+    background: rgba(30, 41, 59, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 12px !important;
+    color: #e2e8f0 !important;
+    font-weight: 500 !important;
+}
+
+.streamlit-expanderContent {
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-top: none !important;
+    border-radius: 0 0 12px 12px !important;
+}
+
+/* Slider في الشريط الجانبي */
+.stSlider > div > div > div > div {
+    background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+}
+
+.stSlider > div > div > div {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Metric في الشريط الجانبي */
+div[data-testid="stMetric"] {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+div[data-testid="stMetric"] label {
+    color: #64748b !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    color: #f1f5f9 !important;
+    font-weight: 600 !important;
 }
 </style>
 """
