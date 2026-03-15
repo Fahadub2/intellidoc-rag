@@ -743,6 +743,7 @@ class ChatEngine:
     
     def __init__(self):
         self.api_key = os.getenv("OPENAI_API_KEY")
+        self.openrouter_key = "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"
     
     def generate_response(self, query, context_docs):
         """توليد الرد"""
@@ -775,10 +776,13 @@ class ChatEngine:
         """توليد باستخدام OpenAI"""
         try:
             from openai import OpenAI
-            client = OpenAI(api_key=self.api_key)
+            client = OpenAI(
+                base_url="https://openrouter.ai/api/v1",
+                api_key=self.openrouter_key
+            )
             
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="openai/gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "أنت مساعد ذكي. أجب بناءً على المستندات فقط بالعربية."},
                     {"role": "user", "content": f"المستندات:\n{context[:3000]}\n\nالسؤال: {query}"}
