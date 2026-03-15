@@ -782,7 +782,7 @@ class ChatEngine:
             )
             
             response = client.chat.completions.create(
-                model="openai/gpt-3.5-turbo",
+                model="openrouter/hunter-alpha",
                 messages=[
                     {"role": "system", "content": "أنت مساعد ذكي. أجب بناءً على المستندات فقط بالعربية."},
                     {"role": "user", "content": f"المستندات:\n{context[:3000]}\n\nالسؤال: {query}"}
