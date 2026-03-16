@@ -743,7 +743,7 @@ class ChatEngine:
     
     def __init__(self):
         self.api_key = os.getenv("OPENAI_API_KEY")
-        self.openrouter_key = "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"
+        self.openrouter_key = "sk-or-v1-"
     
     def generate_response(self, query, context_docs):
         """توليد الرد"""
